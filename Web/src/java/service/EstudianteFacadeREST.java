@@ -154,6 +154,15 @@ public class EstudianteFacadeREST extends AbstractFacade<Estudiante> {
            return ("se actualizo con exito");
     }
     
+    @POST
+    @Path("eliminar")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
+    public String eliminar(@FormParam ("cedula")String cedula){
+        Estudiante jc = super.find(cedula);
+        super.remove(jc);
+        return "se elimino con exito";
+    }
+    
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -168,6 +177,22 @@ public class EstudianteFacadeREST extends AbstractFacade<Estudiante> {
         return String.valueOf(super.count());
     }
 
+    @GET
+    @Path("serie")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String serie (@QueryParam("n") int n){
+        int a,b;
+            int c=0;
+        a=-1;
+        b=1;
+        for(int i=0; 1 <= n;i++){
+            c=a+b;
+            a=b;
+            b=c;
+        }
+        return ""+c;
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

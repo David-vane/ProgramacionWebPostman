@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstudianteCreateDlg" widgetVar="EstudianteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEstudianteTitle}">
+            <h:form id="EstudianteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estudianteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{estudianteController.selected.cedula}" title="#{bundle.CreateEstudianteTitle_cedula}" required="true" requiredMessage="#{bundle.CreateEstudianteRequiredMessage_cedula}"/>
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{estudianteController.selected.nombres}" title="#{bundle.CreateEstudianteTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{estudianteController.selected.apellidos}" title="#{bundle.CreateEstudianteTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_carrera}" for="carrera" />
+                        <p:inputText id="carrera" value="#{estudianteController.selected.carrera}" title="#{bundle.CreateEstudianteTitle_carrera}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_modulo}" for="modulo" />
+                        <p:inputText id="modulo" value="#{estudianteController.selected.modulo}" title="#{bundle.CreateEstudianteTitle_modulo}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{estudianteController.selected.telefono}" title="#{bundle.CreateEstudianteTitle_telefono}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estudianteController.create}" value="#{bundle.Save}" update="display,:EstudianteListForm:datalist,:growl" oncomplete="handleSubmit(args,'EstudianteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstudianteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
